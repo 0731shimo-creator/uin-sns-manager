@@ -14,7 +14,7 @@
 </div>
 <script>
   // TikTokから戻ってきた認可コードを、Apps Scriptに渡すだけのページ（秘密の情報はここに置かない）
-  const CONNECT_URL = "";  // Apps Scriptの公開URL（index.html と同じ値）
+  const CONNECT_URL = "https://script.google.com/macros/s/AKfycbxUm-IGrUvkGSS1921WeoUxcvpRWvmJa6zBZso_Okqh63nmPTY5DhXPlc4PS2fcF4z3tQ/exec";  // Apps Scriptの公開URL（index.html と同じ値）
   const q = new URLSearchParams(location.search);
   const msg = document.getElementById("msg"), sub = document.getElementById("sub");
   if (q.get("error")) {
