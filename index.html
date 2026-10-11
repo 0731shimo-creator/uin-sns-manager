@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>UIN SNS Manager</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+  <header><a href="./">UIN SNS Manager</a></header>
+
+  <h1>UIN SNS Manager</h1>
+  <p>UIN DESIGN OFFICEのスタッフが、運用しているTikTokアカウントのフォロワー数と、動画の数字（再生数・いいね・コメント・シェア）を、社内の管理シートに記録するためのツールです。</p>
+  <p class="muted">An internal tool for UIN DESIGN OFFICE staff to record follower counts and the view, like, comment and share counts of TikTok videos on the accounts we manage into our internal spreadsheet.</p>
+
+  <div class="card">
+    <h2 style="margin-top:0">TikTokと連携する / Connect with TikTok</h2>
+    <p>下のボタンを押すと、TikTok公式のログイン画面が開きます。許可すると、プロフィール（名前・アイコン）、フォロワー数などのアカウントの数字、公開動画の一覧と数字を読み取れるようになります。投稿・削除・変更はできません。</p>
+    <p class="muted">You will be taken to TikTok's official login page. We only request read access to your basic profile, your account stats (such as follower count) and your public video list with its counts. We cannot post, delete or edit anything.</p>
+    <p><a class="btn" id="connect" href="#" aria-disabled="true">TikTokと連携する</a></p>
+    <p class="muted" id="connectNote">準備中です（Coming soon）。</p>
+  </div>
+
+  <h2>取得する情報 / Data we access</h2>
+  <ul>
+    <li>プロフィール：表示名・アイコン（user.info.basic）</li>
+    <li>アカウントの数字：フォロワー数・フォロー数・総いいね数・動画数（user.info.stats）</li>
+    <li>公開動画の一覧：動画のURL・投稿日・再生数・いいね数・コメント数・シェア数（video.list）</li>
+  </ul>
+
+  <h2>連携の解除 / Disconnect</h2>
+  <p>TikTokアプリの「設定とプライバシー → セキュリティ → アプリとサービスの権限」から、いつでも連携を解除できます。</p>
+
+  <footer>
+    <a href="terms.html">利用規約 / Terms of Service</a>
+    <a href="privacy.html">プライバシーポリシー / Privacy Policy</a>
+    <span>運営：UIN DESIGN OFFICE ／ お問い合わせ：0731shimo@gmail.com</span>
+  </footer>
+</div>
+<script>
+  // 連携ボタンの行き先（Apps Scriptの公開URL）。公開後にここへ入れる
+  const CONNECT_URL = "";
+  if (CONNECT_URL) {
+    const a = document.getElementById("connect");
+    a.href = CONNECT_URL + "?action=connect";
+    a.removeAttribute("aria-disabled");
+    document.getElementById("connectNote").hidden = true;
+  }
+</script>
+</body>
+</html>
