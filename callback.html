@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>連携中 | UIN SNS Manager</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+  <header><a href="./">UIN SNS Manager</a></header>
+  <h1 id="msg">連携を完了しています…</h1>
+  <p class="muted" id="sub">このまま少しお待ちください。</p>
+</div>
+<script>
+  // TikTokから戻ってきた認可コードを、Apps Scriptに渡すだけのページ（秘密の情報はここに置かない）
+  const CONNECT_URL = "";  // Apps Scriptの公開URL（index.html と同じ値）
+  const q = new URLSearchParams(location.search);
+  const msg = document.getElementById("msg"), sub = document.getElementById("sub");
+  if (q.get("error")) {
+    msg.textContent = "連携がキャンセルされました";
+    sub.textContent = "もう一度試す場合は、トップページから「TikTokと連携する」を押してください。";
+  } else if (!q.get("code")) {
+    msg.textContent = "このページは連携の途中で使うページです";
+    sub.textContent = "トップページから「TikTokと連携する」を押してください。";
+  } else if (!CONNECT_URL) {
+    msg.textContent = "準備中です";
+    sub.textContent = "連携先がまだ設定されていません。";
+  } else {
+    const to = new URL(CONNECT_URL);
+    to.searchParams.set("action", "callback");
+    to.searchParams.set("code", q.get("code"));
+    if (q.get("state")) to.searchParams.set("state", q.get("state"));
+    location.replace(to.toString());
+  }
+</script>
+</body>
+</html>
